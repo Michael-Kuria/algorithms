@@ -90,12 +90,16 @@ public class Sorting {
     }
 
     /**
-     * Merge the given array
+     * This function will merge & sort the @Param array from [start:mid] & [mid+1:end]
+     * @param array
+     * @param start the 0 index of the given portion of the array
+     * @param mid the middle index of the given portion of the array
+     * @param end the final index  "   "    "   "        "   "  "
      */
 
     public static void merge(int[]array, int start, int mid, int end){
-        //merge the 2 arrays
-        int[] newArray = Arrays.copyOf(array,end + 1);
+        //make a copy of the array from index start:end
+        int[] newArray = Arrays.copyOf(array,array.length);
 
         int i = start;
         int j = mid + 1;
@@ -124,23 +128,8 @@ public class Sorting {
             k ++;
             j ++;
         }
+        printTheDifference(array, newArray);
 
-
-        /*for(int i = 0; i < newArray.length; i ++){
-            System.out.println("start = "+ start + " mid = "+ mid + " end = "+ end);
-            if(array[start] < array[mid]){
-                newArray[i] = array[start];
-                start ++;
-            }else{
-                newArray[i] = array[mid];
-                mid ++;
-
-            }
-            if(start > end || mid > end){
-                return;
-            }
-            //System.out.println("AM HERE");
-        }*/
     }
 
     /**
@@ -156,8 +145,26 @@ public class Sorting {
 
     }
 
+    /**
+     * This function show the difference between 2 arrays {Good for visualizing merge-sort}
+     * @param array
+     * @param array2
+     */
+
+    public static void printTheDifference(int[] array, int [] array2){
+        for(int i = 0; i < array.length; i ++){
+            if(array[i] == array2[i]){
+                System.out.print("::" + "   ");
+            }else{
+                System.out.print(array[i] + "   ");
+            }
+
+        }
+        System.out.println();
+    }
+
     public static void main(String [] args){
-        int[] array = {20,5,9,0,1,3,80,15,67,54,200,23,0,400};
+        int[] array = {20,5,9,0,1,3,80,15,67,54,200,23,0,400,67,454,35662,45,687,45,0};
 
         print(array);
         //selectionSort(array);

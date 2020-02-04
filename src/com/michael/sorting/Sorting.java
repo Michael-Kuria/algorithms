@@ -1,5 +1,7 @@
 package com.michael.sorting;
 
+import java.util.Arrays;
+
 /**
  * The sorting algorithms presented in this class will sort the given int array in an ascending order
  *
@@ -46,6 +48,7 @@ public class Sorting {
      * @param array
      */
     public static void selectionSort(int[] array){
+        int [] newArray = new int[array.length];
         for(int i = 0; i < array.length ; i ++){
             int smallestIndex = i;
             int j;
@@ -72,16 +75,17 @@ public class Sorting {
      * @param array
      */
 
-    public static void mergeSort(int [] array){
-        //base case
-        if(array.length == 1){
+    public static void  mergeSort(int [] array,int start, int end){
+
+
+        if(end <= start ) {
             return;
         }
+        int mid = (start+end)/2;
 
-        while(){
-            //int start =
-            int mid = array.length/2;
-        }
+        mergeSort(array, start,mid);
+        mergeSort(array,mid+1,end);
+        merge(array,start,mid,end);
 
     }
 
@@ -90,7 +94,53 @@ public class Sorting {
      */
 
     public static void merge(int[]array, int start, int mid, int end){
+        //merge the 2 arrays
+        int[] newArray = Arrays.copyOf(array,end + 1);
 
+        int i = start;
+        int j = mid + 1;
+        int k = start;
+
+        while(i <= mid  && j <= end ){
+            if(newArray[i] < newArray[j]){
+                array[k] = newArray[i];
+                i ++;
+                k ++;
+            }else {
+                array[k] = newArray[j];
+                j ++;
+                k ++;
+            }
+        }
+
+        while(i <= mid){
+            array[k] = newArray[i];
+            k ++;
+            i ++;
+        }
+
+        while(j <= mid){
+            array[k] = newArray[j];
+            k ++;
+            j ++;
+        }
+
+
+        /*for(int i = 0; i < newArray.length; i ++){
+            System.out.println("start = "+ start + " mid = "+ mid + " end = "+ end);
+            if(array[start] < array[mid]){
+                newArray[i] = array[start];
+                start ++;
+            }else{
+                newArray[i] = array[mid];
+                mid ++;
+
+            }
+            if(start > end || mid > end){
+                return;
+            }
+            //System.out.println("AM HERE");
+        }*/
     }
 
     /**
@@ -110,8 +160,10 @@ public class Sorting {
         int[] array = {20,5,9,0,1,3,80,15,67,54,200,23,0,400};
 
         print(array);
-        selectionSort(array);
+        //selectionSort(array);
+        mergeSort(array,0,array.length-1);
         print(array);
+
 
     }
 }

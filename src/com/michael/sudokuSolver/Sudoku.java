@@ -1,7 +1,15 @@
 package com.michael.sudokuSolver;
 
+/**
+ * The algorithm presented will test each and number 1 - 9 on the empty slots until a fit is found
+ */
 public class Sudoku {
 
+    /**
+     * Goes through the entire sudoku row by row to find an empty cell.
+     * @param sudoku
+     * @return empty cell
+     */
     public static int[] getEmptyCell(int[][] sudoku){
         for(int i = 0; i < sudoku.length; i ++){
             for(int j = 0; j < sudoku.length; j ++){
@@ -13,6 +21,20 @@ public class Sudoku {
         return new int[] {-1,-1};
     }
 
+    /**
+     * SUDOKU RULES
+     * --------------
+     * There should be 1 - 9 in a :
+         * 1) row.
+         * 2) column.
+         * 3) 3 X 3 grid
+     * Check the row, column, the cell grid (3 X 3) if num is a fit
+     * @param sudoku
+     * @param row
+     * @param col
+     * @param num
+     * @return
+     */
     public static boolean isValid(int[][] sudoku , int row, int col, int num){
         for(int i = 0; i < sudoku.length ; i ++){
             if(sudoku[row][i] == num)
@@ -42,6 +64,12 @@ public class Sudoku {
         return true;
     }
 
+
+    /**
+     * Solves the sudoku and backtracks if there were mistakes with our fits
+     * @param sudoku
+     * @return true if the sudoku is solved and false otherwise
+     */
     public static boolean solveSudoku(int[][] sudoku){
 
         int[] emptyCell = getEmptyCell(sudoku);
@@ -57,6 +85,9 @@ public class Sudoku {
                 sudoku[row][col] = k;
                 if(solveSudoku(sudoku))
                     return true;
+               /* printSudoku(sudoku);
+                System.out.println();
+                System.out.println();*/
 
                 sudoku[row][col] = 0;
             }
@@ -68,6 +99,10 @@ public class Sudoku {
 
     }
 
+    /**
+     * prints the given sudoku in a .pretty() way showing the 3 X 3 grids
+     * @param sudoku
+     */
     public static void printSudoku(int[][] sudoku){
         for(int i = 0; i < sudoku.length; i ++){
             if((i ) % 3 == 0){
@@ -83,6 +118,8 @@ public class Sudoku {
             System.out.println("");
         }
     }
+
+
 
     public static void main(String [] args){
         int[][] sudoku = {

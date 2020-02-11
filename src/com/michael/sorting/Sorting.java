@@ -8,6 +8,12 @@ import java.util.Arrays;
  */
 public class Sorting {
 
+    /**
+     * This algorithm sorts the array by finding the smallest element from the back of the array
+     * and then push it until it's in the right position
+     *
+     * @param array array to be sorted
+     */
     public static void bubbleSort(int [] array){
         // i = -1 since array till the ith position is already sorted{avoids comparison between the jth and ith position}
         for(int i = -1; i < array.length-1; i ++){
@@ -25,6 +31,11 @@ public class Sorting {
     }
 
 
+    /**
+     * This algorithm ensures that a section of the array is sorted i.e from 0 - j
+     *
+     * @param array the array to be sorted
+     */
     public static void insertionSort(int [] array){
         for(int i = 1; i < array.length; i ++){
             for(int j = 0; j < i; j++){

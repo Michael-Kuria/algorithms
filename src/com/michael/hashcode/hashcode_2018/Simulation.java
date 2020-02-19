@@ -43,19 +43,16 @@ public class Simulation {
         }
 
         if(tempStep == ride.getEarliestStart()){
-            score += (B + ride.getDistance());
+            score += ( B + ride.getDistance() );
             return score;
 
         }else if(tempStep > ride.getEarliestStart()){
             if((tempStep + ride.getDistance()) > ride.getLatestFinish()){
                 return  -1;
             }
-
             return 0;
-
         }
-        return - 1;
-
+        return -1;
     }
 
     public void updateCars( Ride ride){
@@ -88,6 +85,7 @@ public class Simulation {
             car.addLast(ride.getIndex());
             car.setStep(travelDist + rideDist + waitingTime);
             car.setCurrentPosition(ride.getFinish());
+            solution.addLast(car);
         }
 
     }
@@ -96,6 +94,7 @@ public class Simulation {
         initSimulation();
 
         for(int i = F ; i < N; i ++ ){
+
             Ride ride = rideList.get(i);
             updateCars(ride);
             Collections.sort(solution);
@@ -104,7 +103,9 @@ public class Simulation {
             int waitingTime = 0;
             int j = 0;
             boolean bonus = false;
+            //System.out.println("solution size "+ solution.size());
             for(Car car : solution){
+
                 int k = isRideValid(car,ride);
                 if(k > 0){
                     score += k;
@@ -137,7 +138,8 @@ public class Simulation {
     }
 
     public static void main(String [] args){
-        String [] fileNames = {"a_example.in", "b_should_be_easy.in" ,"e_high_bonus.in","c_no_hurry.in","d_metropolis.in"};
+        // ,
+        String [] fileNames = {"a_example.in", "b_should_be_easy.in","c_no_hurry.in","e_high_bonus.in","d_metropolis.in"};
 
         int totalScore = 0;
 
@@ -149,6 +151,7 @@ public class Simulation {
             Simulation simulation = fileManager.readFile();
 
             simulation.solve();
+            //fileManager.writeFile();
 
             System.out.println("Score : " + simulation.score +" bonus " + simulation.bonus + " bonus total " + (simulation.bonus  * simulation.B));
 

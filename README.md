@@ -1,5 +1,5 @@
 # Algorithms
-Common algorithms implemented using Java
+Common algorithms and Data Structures implemented using Java
 
 ## Sorting
 - Bubble Sort

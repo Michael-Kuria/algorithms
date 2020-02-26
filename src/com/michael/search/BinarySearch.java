@@ -9,7 +9,7 @@ public class BinarySearch {
     /**
      * For the function to work the array needs to be <code>sorted</code>
      *
-     * The worst case complexity for the function is O(log n)
+     * The complexity for the algorithm is O(log n)
      *
      * @param value the value to be searched
      * @param array the array to search in
@@ -42,7 +42,7 @@ public class BinarySearch {
 
     /**
      * The function is similar to the binary search algorithm only that in this case we are looking for the best index i where
-     * array[i] < value > array[i+1]
+     * array[i] <= value >= array[i+1]
      * @param value
      * @param array
      * @param start

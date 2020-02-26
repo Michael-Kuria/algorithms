@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * The sorting algorithms presented in this class will sort the given int array in an ascending order
+ * @author Kush
  *
  */
 public class Sorting {

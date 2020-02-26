@@ -6,7 +6,7 @@ Common algorithms and Data Structures implemented using Java
 - Insertion Sort
 - Selection Sort
 - Merge Sort
-- Insertion sort with binary Search {_Can be found in com/michael/search_}
+- Insertion sort with binary Search {_Can be found in **com.michael.search**_}
 
 ## Hashcode problems covered
 - Hashcode 2017 practice round - {_The task description can be found in the resource folder_}
@@ -32,6 +32,7 @@ The problem description can found in a the folder _**com.michael.meetingSchedule
 - Sort the List according to their starting time.
 - If there is any overlap combine the intervals into one e.g {{"09:00", "10:30"} ,{"10:00","11:00"}, ... }
 this 2 entries can be considered as one entry i.e {{"09:00","11:00"}, ... } since no meeting can be held in between them.
-- Use the new formed list to find the times in which the meeting can be held.
+- Use the new formed list to find the times in which the meeting can be held, ensuring they fit in between the bounds of each
+person.
 
         

@@ -4,6 +4,8 @@ package com.michael.trees;
  * An implementation of a binary tree.
  *
  * This implementation does not take care of unbalanced trees
+ *
+ * @author Kush
  */
 
 public class BinaryTree {

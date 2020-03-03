@@ -3,7 +3,7 @@ package com.michael.sorting;
 import java.util.Arrays;
 
 /**
- * The sorting algorithms presented in this class will sort the given int array in an ascending order
+ * The sorting algorithms presented in this class will sort the given int array in ascending order
  * @author Kush
  *
  */

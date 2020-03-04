@@ -1,5 +1,5 @@
 # Algorithms
-Common algorithms and Data Structures implemented using Java
+Algorithms, Data Structures and optimization problems implemented using Java
 
 ## Sorting
 - Bubble Sort
@@ -27,7 +27,7 @@ cell empty. Continue doing this until all the cells are filled.
 - Binary search
 
 ## Meeting Scheduler
-The problem description can found in a the folder _**com.michael.meetingScheduler**_ 
+The problem description can found in the folder _**com.michael.meetingScheduler**_ 
 - Take the schedule of each person combine them into one List.
 - Sort the List according to their starting time.
 - If there is any overlap combine the intervals into one e.g {{"09:00", "10:30"} ,{"10:00","11:00"}, ... }

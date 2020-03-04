@@ -249,7 +249,7 @@ public class MeetingScheduler {
         MeetingScheduler scheduler = new MeetingScheduler();
         scheduler.schedule(student,teacher);
         scheduler.print("solution >>>>> ",scheduler.solution);
-        System.out.println(scheduler.globalBounds);
+        System.out.println("With bounds: "+scheduler.globalBounds);
     }
 
 

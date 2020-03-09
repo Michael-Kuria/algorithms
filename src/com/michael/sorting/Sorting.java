@@ -144,6 +144,11 @@ public class Sorting {
 
     }
 
+
+    public void quickSort(int[] array){
+
+    }
+
     /**
      * The following function prints the array in the params
      * @param array

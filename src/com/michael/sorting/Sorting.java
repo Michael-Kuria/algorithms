@@ -145,7 +145,58 @@ public class Sorting {
     }
 
 
-    public void quickSort(int[] array){
+    /**
+     * This function will ensure that the elements less than the pivot will be on the left and elements
+     * greater than the pivot will be on thee right.
+     *
+     * The pivot will be selected as the first element on the section of the array i.e @param end
+     *
+     * @param array
+     * @param start
+     * @param end
+     * @return the index of the pivot element
+     */
+    public static int quickSortStep(int [] array, int start, int end){
+        if(end == start || end < start){
+            return -1;
+        }
+        int pivot = array[end];
+
+        for(int i = start ; i < end ; i ++){
+
+            if(array[i] < pivot){
+                //update i and keep the position where pivot should be at
+                int temp = array[i];
+                array[i] = array[start];
+                array[start] = temp;
+                start ++;
+            }
+        }
+
+        //Remember to keep the pivot at it right position
+        array[end] = array[start];
+        array[start] = pivot;
+
+        return start;
+
+    }
+
+    /**
+     * Recursively call the quickSortStep function until the array is sorted
+     * @param array
+     * @param start
+     * @param end
+     */
+    public static void quickSort(int[] array,int start, int end){
+
+        int pivotIndex = quickSortStep(array, start, end);
+
+        if(pivotIndex == -1){
+            return;
+        }
+
+        quickSort(array,start,pivotIndex - 1 );
+        quickSort(array,pivotIndex + 1 ,end);
 
     }
 
@@ -181,11 +232,12 @@ public class Sorting {
     }
 
     public static void main(String [] args){
-        int[] array = {20,5,9,0,1,3,80,15,67,54,200,23,0,400,67,454,35662,45,687,45,0};
+        int[] array = {20,5,9,0,1,3,80,15,67,54,200,23,0,400,67,454,35662,45,687,45};
 
         print(array);
         //selectionSort(array);
-        mergeSort(array,0,array.length-1);
+        //mergeSort(array,0,array.length-1);
+        quickSort(array,0,array.length-1);
         print(array);
 
 

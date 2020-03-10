@@ -3,7 +3,9 @@ package com.michael.sorting;
 import java.util.Arrays;
 
 /**
- * The sorting algorithms presented in this class will sort the given int array in ascending order
+ * The sorting algorithms presented in this class will sort the given int array in ascending order.
+ * For simplicity the algorithms are sorting an array of integers.
+ *
  * @author Kush
  *
  */
@@ -164,12 +166,13 @@ public class Sorting {
 
         for(int i = start ; i < end ; i ++){
 
+            //@param start will keep track of the element greater than the pivot, and store it for later of the final swap.
+            // i will always go linearly but not to the @param end
             if(array[i] < pivot){
-                //update i and keep the position where pivot should be at
                 int temp = array[i];
                 array[i] = array[start];
                 array[start] = temp;
-                start ++;
+                start ++; // note that this is only updated when there is a swap to be done
             }
         }
 
@@ -206,6 +209,12 @@ public class Sorting {
      */
 
     public static void print(int[] array){
+
+        if(array == null || array.length == 0){
+            System.out.println("Empty Array ");
+            return;
+        }
+
         for(int k= 0; k < array.length; k ++){
             System.out.print(array[k] + "   ");
         }

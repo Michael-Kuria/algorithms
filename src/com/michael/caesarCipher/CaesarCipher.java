@@ -33,14 +33,19 @@ public class CaesarCipher {
             char character = message.charAt(i);
             if(character != ' '){
                 // first find the position (from 'A') of the character in the alphabetical order
-                // 'A' is index 65 'Z' is index 90 'a' index 97
-                int newIndex = ((character - 'A') + offset) ;
+                // 'A' is index 65, 'Z' is index 90, 'a' index 97 and 'z' index 122
+                int newIndex;
+                if(character >= 'a' ){
+                    //a small letter
+                    newIndex = ((character - 'a') + offset) % 26;
+                    encryptedMessage.append((char) ('a' + (newIndex)) );
 
-                if(newIndex > 25 && newIndex < 32){
-                    newIndex += (32 - newIndex);
+                }else{
+                    //a Capital letter
+                    newIndex = ((character - 'A') + offset) % 26;
+                    encryptedMessage.append((char) ('A' + (newIndex)) );
+
                 }
-
-                encryptedMessage.append((char) ('A' + (newIndex % 58)) );
 
             }else{
                 encryptedMessage.append(character);
@@ -55,6 +60,7 @@ public class CaesarCipher {
     /**
      *
      * This function will reverse the cipher method
+     * {needs improvement check with an offset of 21 and 98}
      *
      * @param message String to be decrypted
      * @return the decrypted message
@@ -73,19 +79,30 @@ public class CaesarCipher {
             char character = message.charAt(i);
 
             if(character != ' '){
-                int originalIndex = ((character - 'A') - offset);
+                int originalIndex;
 
-                if(originalIndex < 0){
-                    originalIndex = ('z' - 'A') + originalIndex + 1;
-                    //System.out.println((int) 'z' +" "+ originalIndex);
+                if(character >= 'a'){
+
+                    originalIndex = ((character - 'a') - offset) % 26;
+
+                    if(originalIndex < 0){
+
+                        originalIndex = 26 + originalIndex;
+                    }
+                    decryptedMessage.append((char) ('a' + originalIndex));
+
+                }else{
+
+                    originalIndex = ((character - 'A') - offset) % 26;
+
+                    if(originalIndex < 0){
+                        originalIndex = 26 + originalIndex;
+                    }
+                    decryptedMessage.append((char) ('A' + originalIndex));
+
+
                 }
 
-                if(originalIndex > 25 && originalIndex < 32){
-                    originalIndex -= (originalIndex - 25);
-
-                }
-
-                decryptedMessage.append((char) ('A' + originalIndex));
             }else{
                 decryptedMessage.append(character);
             }
@@ -99,8 +116,8 @@ public class CaesarCipher {
 
     public static void main(String [] args){
 
-        CaesarCipher cipher = new CaesarCipher(1);
-        String message = "MichaelZ Kuriaz";
+        CaesarCipher cipher = new CaesarCipher(25);
+        String message = "MichaelZ Kuriaz what happened at the ball";
         String encryptedMessage = cipher.cipher(message);
         String decryptedMessage = cipher.decipher(encryptedMessage);
         System.out.println("Original Message :" +message);

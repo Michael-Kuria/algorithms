@@ -6,6 +6,7 @@ Algorithms, Data Structures and optimization problems implemented using Java
 - Insertion Sort
 - Selection Sort
 - Merge Sort
+- Quick Sort
 - Insertion sort with binary Search {_Can be found in **com.michael.search**_}
 
 ## Hashcode problems covered
@@ -34,5 +35,9 @@ The problem description can found in the folder _**com.michael.meetingScheduler*
 this 2 entries can be considered as one entry i.e {{"09:00","11:00"}, ... } since no meeting can be held in between them.
 - Use the new formed list to find the times in which the meeting can be held, ensuring they fit in between the bounds of each
 person.
+
+## Caesar Cipher
+Given a string `str` offset each alphabetical character **+ X** characters ahead example `Cat` becomes `Dbu` with an offset of 1.
+i.e {'C' + 1 = 'D' , 'a' + 1 = 'b' and 't' + 1 = 'u' }. 
 
         

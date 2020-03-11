@@ -11,6 +11,7 @@ package com.michael.trees;
 public class BinaryTree {
 
     public Node root;
+    public int size = 0;
 
     public BinaryTree(){}
 
@@ -21,6 +22,7 @@ public class BinaryTree {
     public BinaryTree(int value){
         Node node = new Node(value);
         this.root = node;
+        size ++;
     }
 
     /**
@@ -33,6 +35,7 @@ public class BinaryTree {
         if(value <= node.getValue()){
 
             if(node.getLeftNode() == null){
+                size ++;
                 node.setLeftNode(new Node(value));
                 return;
             }
@@ -41,6 +44,7 @@ public class BinaryTree {
         }else {
 
             if(node.getRightNode() == null){
+                size ++;
                 node.setRightNode(new Node(value));
                 return;
             }
@@ -60,7 +64,9 @@ public class BinaryTree {
         Node parent;
 
         if(root == null){
+
             this.root = node;
+            size ++;
             return;
         }else{
             parent = root;
@@ -70,12 +76,14 @@ public class BinaryTree {
             if(value <= parent.getValue()){
                 if(parent.getLeftNode() == null){
                     parent.setLeftNode(node);
+                    size ++;
                     return;
                 }
                 parent = parent.getLeftNode();
             }else{
                 if(parent.getRightNode() == null){
                     parent.setRightNode(node);
+                    size ++;
                     return;
                 }
                 parent = parent.getRightNode();
@@ -115,6 +123,14 @@ public class BinaryTree {
 
     public void delete(int value){
 
+    }
+
+    /**
+     * @return the number of nodes in the tree
+     */
+
+    public int getSize(){
+        return size;
     }
 
 

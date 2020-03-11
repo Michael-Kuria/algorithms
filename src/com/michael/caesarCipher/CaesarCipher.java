@@ -11,6 +11,8 @@ public class CaesarCipher {
         this.offset = offset;
     }
 
+
+
     /**
      * This method offsets each letter of the given @param message +offset integers
      *
@@ -31,7 +33,7 @@ public class CaesarCipher {
 
         for(int i = 0; i < message.length(); i ++){
             char character = message.charAt(i);
-            if(character != ' '){
+            if(Character.isAlphabetic(character)){
                 // first find the position (from 'A') of the character in the alphabetical order
                 // 'A' is index 65, 'Z' is index 90, 'a' index 97 and 'z' index 122
                 int newIndex;
@@ -78,7 +80,7 @@ public class CaesarCipher {
         for(int i = 0; i < message.length(); i ++ ){
             char character = message.charAt(i);
 
-            if(character != ' '){
+            if(Character.isAlphabetic(character)){
                 int originalIndex;
 
                 if(character >= 'a'){
@@ -100,7 +102,6 @@ public class CaesarCipher {
                     }
                     decryptedMessage.append((char) ('A' + originalIndex));
 
-
                 }
 
             }else{
@@ -117,7 +118,7 @@ public class CaesarCipher {
     public static void main(String [] args){
 
         CaesarCipher cipher = new CaesarCipher(25);
-        String message = "MichaelZ Kuriaz what happened at the ball";
+        String message = "The Quick Lazy Brown Foxes Jumped over the gate.";
         String encryptedMessage = cipher.cipher(message);
         String decryptedMessage = cipher.decipher(encryptedMessage);
         System.out.println("Original Message :" +message);

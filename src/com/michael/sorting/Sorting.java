@@ -99,7 +99,7 @@ public class Sorting {
 
         mergeSort(array, start,mid);
         mergeSort(array,mid+1,end);
-        merge(array,start,mid,end);
+        mergeSimplified(array,start,mid,end);
 
     }
 
@@ -112,7 +112,7 @@ public class Sorting {
      */
 
     public static void merge(int[]array, int start, int mid, int end){
-        //make a copy of the array from index start:end
+        //make a copy of the original array
         int[] newArray = Arrays.copyOf(array,array.length);
 
         int i = start;
@@ -131,6 +131,11 @@ public class Sorting {
             }
         }
 
+        /*
+            In case any section of the array completed before the other the following loops will handle that.
+            Note with the mergeSimplified function this step is skipped since the sentinel values will take of it.
+         */
+
         while(i <= mid){
             array[k] = newArray[i];
             k ++;
@@ -143,6 +148,47 @@ public class Sorting {
             j ++;
         }
         printTheDifference(array, newArray);
+
+    }
+
+    /**
+     * In the following version of merge. Copy just the required section of the right and left array.
+     * Put a sentinel value at the end of each array, i.e a big integer value. This will remove the need
+     * of checking if the left or right array is empty so that we can update the original array accordingly
+     *
+     * @param array
+     * @param start
+     * @param mid
+     * @param end
+     */
+    public static void mergeSimplified(int[] array, int start, int mid , int end){
+
+        /*
+        The Arrays.copyRange function will copy the given range from ( start) to (mid + 1)
+         */
+        int [] leftArray = Arrays.copyOfRange(array, start, mid + 2); // to is exclusive
+        int [] rightArray = Arrays.copyOfRange(array,mid + 1, end + 2);
+
+        leftArray[leftArray.length - 1] = Integer.MAX_VALUE; // replacing the last value (mid + 1) value with the sentinel value
+        rightArray[rightArray.length - 1] = Integer.MAX_VALUE;
+
+
+        int i = 0;
+        int j = 0;
+        int k = start;
+
+        while(k <= end){
+            if(leftArray[i] <= rightArray[j]){
+                array[k] = leftArray[i];
+                i ++;
+
+            }else{
+                array[k] = rightArray[j];
+                j ++;
+            }
+
+            k ++;
+        }
 
     }
 
@@ -169,9 +215,12 @@ public class Sorting {
             //@param start will keep track of the element greater than the pivot, and store it for later of the final swap.
             // i will always go linearly but not to the @param end
             if(array[i] < pivot){
-                int temp = array[i];
-                array[i] = array[start];
-                array[start] = temp;
+                if(start != i ){
+                    int temp = array[i];
+                    array[i] = array[start];
+                    array[start] = temp;
+                }
+
                 start ++; // note that this is only updated when there is a swap to be done
             }
         }
@@ -241,12 +290,12 @@ public class Sorting {
     }
 
     public static void main(String [] args){
-        int[] array = {20,5,9,0,1,3,80,15,67,54,200,23,0,400,67,454,35662,45,687,45};
+        int[] array = {20,5,9,0,1,3,80,15,67,54,200,23,0,400,67,454,35662,45,687,45,0};
 
         print(array);
         //selectionSort(array);
-        //mergeSort(array,0,array.length-1);
-        quickSort(array,0,array.length-1);
+        mergeSort(array,0,array.length-1);
+        //quickSort(array,0,array.length-1);
         print(array);
 
 

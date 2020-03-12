@@ -57,7 +57,7 @@ public class Sorting {
 
 
     /**
-     * This sorting algorithm will first go through the entire array look for the smallest element
+     * This sorting algorithm will first go through the entire array looking for the smallest element
      * then place it in it's right position
      * @param array
      */

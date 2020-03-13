@@ -109,6 +109,40 @@ public class MaximumProfit {
 
     }
 
+    /**
+     * This function implements Kandane's algorithm for finding the maximum sub-array
+     * It is the fastest since it uses linear time.
+     *
+     * @param array
+     * @return
+     */
+    public static Pair<Pair<Integer,Integer>, Integer> kadaneAlgorithm(int [] array){
+
+        int currentProfit = 0;
+        int bestProfit = 0;
+        int leftIndex = -1;
+        int rightIndex = -1;
+
+        for(int i = 0 ; i < array.length; i ++){
+            int prevCurrentProfit = currentProfit;
+
+            currentProfit = Math.max(array[i], currentProfit + array[i]);
+
+            if(currentProfit == array[i] && currentProfit != prevCurrentProfit){
+                leftIndex = i;
+            }
+
+            if(currentProfit > bestProfit){
+                bestProfit = currentProfit;
+                rightIndex = i;
+            }
+
+        }
+
+        return new Pair<>(new Pair<>(leftIndex,rightIndex), bestProfit);
+
+    }
+
 
     /**
      * Converts the given array, to an array containing difference of adjacent elements in @param array
@@ -147,6 +181,13 @@ public class MaximumProfit {
 
         System.out.println("Maximum profit with divide and conquer " + answer2.getValue());
         System.out.println("Start " + answer2.getKey().getKey() + " end " + answer2.getKey().getValue());
+
+        Pair<Pair<Integer,Integer>, Integer> answer3 = kadaneAlgorithm(priceDifferences);
+
+        System.out.println("Maximum profit with Kandane's Algorithm " + answer3.getValue());
+        System.out.println("start " + answer3.getKey().getKey()+ "  end " +answer3.getKey().getValue());
+
+
 
 
     }

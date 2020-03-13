@@ -31,7 +31,7 @@ public class Inversions {
     }
 
     public static void main(String [] args){
-        int [] array = {2, 3, 8, 6, 1};
+        int [] array = {0,1,2,3,4,5,6}; //{2, 3, 8, 6, 1,0};
 
         System.out.println("Number of inversion using Incremental Method " + inversionsIncrementally(array));
     }

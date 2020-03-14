@@ -124,11 +124,10 @@ public class MaximumProfit {
         int rightIndex = -1;
 
         for(int i = 0 ; i < array.length; i ++){
-            int prevCurrentProfit = currentProfit;
 
             currentProfit = Math.max(array[i], currentProfit + array[i]);
 
-            if(currentProfit == array[i] && currentProfit != prevCurrentProfit){
+            if(currentProfit == array[i]){
                 leftIndex = i;
             }
 
@@ -163,8 +162,8 @@ public class MaximumProfit {
 
 
     public static void main(String[] args){
-        //{100,83,75,64,57,43,40,32,31,30,21,10,9};//
-        int [] prices = {100, 113, 110, 85, 105, 102, 86, 63, 81, 101, 94, 106, 101, 79, 94, 90, 97};
+        //{100,83,75,64,57,43,40,32,31,30,21,10,9};// {100, 113, 110, 85, 105, 102, 86, 63, 81, 101, 94, 106, 101, 79, 94, 90, 97};
+        int [] prices = {10,-2,3,-1,14,17,20,-23,10,-13};
 
         Pair<Pair<Integer, Integer>, Integer> answer = bruteForce(prices);
 
@@ -176,13 +175,13 @@ public class MaximumProfit {
         }
 
         int [] priceDifferences = convertArray(prices);
-        Pair<Pair<Integer,Integer>, Integer> answer2 = findMaxSubArray(priceDifferences, 0, priceDifferences.length - 1);
+        Pair<Pair<Integer,Integer>, Integer> answer2 = findMaxSubArray(prices, 0, priceDifferences.length - 1);
 
 
         System.out.println("Maximum profit with divide and conquer " + answer2.getValue());
         System.out.println("Start " + answer2.getKey().getKey() + " end " + answer2.getKey().getValue());
 
-        Pair<Pair<Integer,Integer>, Integer> answer3 = kadaneAlgorithm(priceDifferences);
+        Pair<Pair<Integer,Integer>, Integer> answer3 = kadaneAlgorithm(prices);
 
         System.out.println("Maximum profit with Kandane's Algorithm " + answer3.getValue());
         System.out.println("start " + answer3.getKey().getKey()+ "  end " +answer3.getKey().getValue());

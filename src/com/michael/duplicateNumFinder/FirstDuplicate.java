@@ -64,8 +64,8 @@ public class FirstDuplicate {
      * act as an index of the array. Thus once a number is visited change the corresponding index to -ve,
      * this implies that when a -ve value is found this mean that it is a duplicate.
      *
-     * @param array
-     * @return
+     * @param array argument
+     * @return the first duplicate found and -1 otherwise
      */
     public static int linearFirstDuplicate(int [] array){
 
@@ -83,8 +83,8 @@ public class FirstDuplicate {
     }
 
     public static void main(String [] args){
-        int [] array = {1,2,1,4,3,2};
-        System.out.println("First duplicate: Brute-Approach " + bruteFirstDuplicate(array) +" Extra Space " + extraSpaceFirstDuplicate(array)
-        + " Linear Time " + linearFirstDuplicate(array));
+        int [] array = {1,2,3,4,3,2};
+        System.out.println("First duplicate: \nBrute-Approach " + bruteFirstDuplicate(array) +"\nExtra Space " + extraSpaceFirstDuplicate(array)
+        + "\nLinear Time " + linearFirstDuplicate(array));
     }
 }

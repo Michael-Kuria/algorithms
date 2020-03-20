@@ -8,6 +8,7 @@ Algorithms, Data Structures and optimization problems implemented using Java
 - Merge Sort
 - Quick Sort
 - Insertion sort with binary Search {_Can be found in **com.michael.search**_}
+- Counting Sort
 
 ## Hashcode problems covered
 - Hashcode 2017 practice round - {_The task description can be found in the resource folder_}

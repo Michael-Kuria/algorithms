@@ -9,7 +9,8 @@ import java.util.LinkedList;
  * This problem posses problems in Java because of how LinkedList have been implemented.
  * The user has no direct access to the elements i.e the head and the tail.
  *
- * Attaining < O(n) solution will be difficult.
+ * Attaining < O(n) solution will be difficult which can only be achieved if one creates his own LinkedList class.
+ *
  */
 public class MergingSortedLinkedList {
 

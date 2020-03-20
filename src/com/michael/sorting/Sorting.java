@@ -59,7 +59,8 @@ public class Sorting {
     /**
      * This sorting algorithm will first go through the entire array looking for the smallest element
      * then place it in it's right position
-     * @param array
+     *
+     * @param array array to be sorted
      */
     public static void selectionSort(int[] array){
         int [] newArray = new int[array.length];
@@ -99,7 +100,7 @@ public class Sorting {
 
         mergeSort(array, start,mid);
         mergeSort(array,mid+1,end);
-        mergeSimplified(array,start,mid,end);
+        mergeTwo(array,start,mid,end);
 
     }
 
@@ -120,6 +121,7 @@ public class Sorting {
         int k = start;
 
         while(i <= mid  && j <= end ){
+
             if(newArray[i] < newArray[j]){
                 array[k] = newArray[i];
                 i ++;
@@ -133,7 +135,7 @@ public class Sorting {
 
         /*
             In case any section of the array completed before the other the following loops will handle that.
-            Note with the mergeSimplified function this step is skipped since the sentinel values will take of it.
+            Note with the mergeSentinel function this step is skipped since the sentinel values will take care of it.
          */
 
         while(i <= mid){
@@ -151,6 +153,7 @@ public class Sorting {
 
     }
 
+
     /**
      * In the following version of merge. Copy just the required section of the right and left array.
      * Put a sentinel value at the end of each array, i.e a big integer value. This will remove the need
@@ -161,7 +164,7 @@ public class Sorting {
      * @param mid
      * @param end
      */
-    public static void mergeSimplified(int[] array, int start, int mid , int end){
+    public static void mergeWithSentinel(int[] array, int start, int mid , int end){
 
         /*
         The Arrays.copyRange function will copy the given range from ( start) to (mid + 1)
@@ -190,6 +193,37 @@ public class Sorting {
             k ++;
         }
 
+    }
+
+    /**
+     * This version of merge avoids adding the sentinel values and makes use of the if statement to ensure
+     * that all elements are processed.
+     *
+     * @param array
+     * @param start
+     * @param mid
+     * @param end
+     */
+    public static void mergeTwo(int [] array, int start, int mid, int end){
+
+        int [] leftSubArray = Arrays.copyOfRange(array, start, mid + 1);
+        int [] rightSubArray = Arrays.copyOfRange(array, mid + 1, end + 1 );
+
+        int i = 0; // for left sub array
+        int j = 0; // for right sub array
+        int k = start; // for updating {@code array}
+
+        while(i < leftSubArray.length || j < rightSubArray.length){
+
+            if((j >= rightSubArray.length) || i < leftSubArray.length && leftSubArray[i] <= rightSubArray[j]){
+                array[k] = leftSubArray[i];
+                i ++;
+            }else{
+                array[k] = rightSubArray[j];
+                j ++;
+            }
+            k ++;
+        }
     }
 
 

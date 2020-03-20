@@ -212,7 +212,7 @@ public class Sorting {
 
         for(int i = start ; i < end ; i ++){
 
-            //@param start will keep track of the element greater than the pivot, and store it for later of the final swap.
+            //@param start will keep track of the element greater than the pivot, and store it for later for the final swap.
             // i will always go linearly but not to the @param end
             if(array[i] < pivot){
                 if(start != i ){

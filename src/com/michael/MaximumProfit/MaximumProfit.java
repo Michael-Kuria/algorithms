@@ -81,6 +81,11 @@ public class MaximumProfit {
 
     /**
      * A recursive approach of finding the max sub-array
+     *
+     * We can find maximum sub-arrays of A[low ,mid] and A[mid +1 , high]  recursively, because these two sub-problems are smaller instances
+     * of the problem of finding a maximum sub-array. Thus, all that is left to do is find a maximum sub-array that crosses the midpoint,
+     * and take a sub-array with the largest sum of the three
+     * 
      * @param array
      * @param start
      * @param end

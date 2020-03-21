@@ -135,7 +135,7 @@ public class Sorting {
 
         /*
             In case any section of the array completed before the other the following loops will handle that.
-            Note with the mergeSentinel function this step is skipped since the sentinel values will take care of it.
+            Note with the mergeSentinel & mergeTwo functions this step is skipped since the sentinel values will take care of it.
          */
 
         while(i <= mid){

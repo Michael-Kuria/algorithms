@@ -29,6 +29,8 @@ public class ListNode<T> {
 
         if(head != null){
             head.prev = x;
+        }else{
+            this.tail = x;
         }
         this.head = x;
         size ++;
@@ -41,6 +43,24 @@ public class ListNode<T> {
      */
     public void insert(T t){
         insert(new Node(t));
+    }
+
+    /**
+     * insert the given object in the last position
+     *
+     * @param t object to be inserted
+     */
+    public void insertLast(T t){
+
+        Node node = new Node(t);
+
+        if(this.tail != null){
+            this.tail.next = node;
+            this.tail.prev = this.tail;
+        }
+
+        this.tail = node;
+        size ++;
     }
 
 
@@ -136,6 +156,11 @@ public class ListNode<T> {
 
     }
 
+    /**
+     * This function will delete the last element with {@code t} of the list
+     * @param t value to be deleted
+     */
+    public void deleteLast(T t){}
 
     /**
      * Check if the list is empty
@@ -171,7 +196,7 @@ public class ListNode<T> {
         list.insert(new Node(12));
         list.insert(new Node(14));
         list.insert(new Node(13));
-        list.insert(new Node(16));
+        list.insertLast(16);
         list.insert(new Node(18));
 
         list.delete(18);

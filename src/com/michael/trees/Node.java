@@ -1,35 +1,14 @@
 package com.michael.trees;
 
-public class Node {
-    private int value;
-    private Node leftNode;
-    private Node rightNode;
+public class Node<T> {
 
-    public Node(int value){
-        this.value = value;
-    }
+    T key;
+    Node parent;
+    Node left;
+    Node right;
 
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
-    }
-
-    public Node getLeftNode() {
-        return leftNode;
-    }
-
-    public void setLeftNode(Node leftNode) {
-        this.leftNode = leftNode;
-    }
-
-    public Node getRightNode() {
-        return rightNode;
-    }
-
-    public void setRightNode(Node rightNode) {
-        this.rightNode = rightNode;
+    public Node(T key) {
+        this.key = key;
     }
 }
+

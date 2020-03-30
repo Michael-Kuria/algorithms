@@ -12,9 +12,9 @@ public class BalancingBinarySearchTrees {
      * This class will attempt to balance a binary tree by traversing the original tree
      * in inorder traversal and storing the elements in an array, the create a new tree from the array
      */
-    public static class SortedArray{
+   // public static class SortedArray{
 
-        public BinaryTree tree;
+        /*public BinaryTree tree;
         public ArrayList<Integer> nodes = new ArrayList<>();
         public int[] array;
 
@@ -63,7 +63,7 @@ public class BalancingBinarySearchTrees {
         }
 
 
-    }
+    }*/
 
 
 

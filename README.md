@@ -42,4 +42,30 @@ person.
 Given a string `str` offset each alphabetical character **+ X** characters ahead example `Cat` becomes `Dbu` with an offset of 1.
 i.e {'C' + 1 = 'D' , 'a' + 1 = 'b' and 't' + 1 = 'u' }. 
 
+## Data Structures
+### Trees
+#### - Binary Trees
+Binary trees have property that the x.left < x <= x.right. This property does not guarantee that the tree will be balanced.
+In worst case where the elements are ordered, the tree can be similar to a linked list.
+
+#### - Red-Black Trees
+They have the properties that :
+- Every node is either Black or Red
+- The root is Black.
+- The leaf nodes are Black.
+- If the root of a subtree is Red then the right and left child will be black.
+- Every simple path from the root to the leaf will have the same number of Black nodes.
+
+Resolves the worst case of Binary tree, ensuring that we never have a Linked list-like tree.
+
+#### - AVL Trees
+They are height balanced, with the property that for each node x, the heights of the left and right subtrees of 
+x differ by at most 1
+
+
+
+ 
+
+
+
         

@@ -279,7 +279,15 @@ public class RBTree<T extends Comparable> {
 
     }
 
+    /**
+     * Delete the given Node from the tree.
+     * @param z
+     */
     public void delete(Node<T> z){
+        // avoid deleting nil or null node
+        if(z.equals(nil) || z == null)
+            return;
+
         Node<T> x,y = z;
         Color yColor = y.color;
 
@@ -317,8 +325,13 @@ public class RBTree<T extends Comparable> {
         }
     }
 
-    // x is the element that replaces y in its position, if x is black then there is trouble that will need to be
-    // resolved, this is due to the black height property
+    /**
+     * x is the element that replaces y in its position, if x is black then there is trouble that will need to be
+     * resolved, this is due to the black height property
+     *
+     * @param x recently inserted Node.
+     */
+
     public void deleteFixUp(Node<T> x){
 
         while(!x.equals(root) && x.color.equals(Color.BLACK)){

@@ -2,6 +2,12 @@ package com.michael.Graphs;
 
 import java.util.*;
 
+/**
+ * This class finds the strongly connected components of a graph and returns a map of all the components
+ * with the key as the root of the depth first search tree
+ *
+ */
+
 public class StronglyConnectedComponents {
 
     public static void dfs(Vertex[] v, Counter c, HashMap<Integer,List<Integer>> m){

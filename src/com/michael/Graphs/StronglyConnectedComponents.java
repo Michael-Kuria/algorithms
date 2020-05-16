@@ -6,7 +6,22 @@ import java.util.*;
  * This class finds the strongly connected components of a graph and returns a map of all the components
  * with the key as the root of the depth first search tree
  *
- */
+ *
+ * /**
+ *  * Why does Kosaraju's algorithm work?
+ *  *
+ *  * Let G -> Graph, GT -> The transpose of G
+ *  *
+ *  * During the first dfs we calculate the finishing time of each vertex in G. if there exist an edge (u,v) from component C to C'
+ *  * It is certain that the finishing time of at least one vertex in C will be greater than any of the finishing time of vertices in C'.
+ *  * This posses a problem, since in such a case it will be difficult to obtain the strongly connected components of G.
+ *  *
+ *  * To eliminate this case we compute GT and order the vertices according to non-increasing finishing time of G. On performing a dfs on GT
+ *  * we are guaranteed that all the vertices of C will be completely search before any vertex in C', this is because (u,v) will be reversed to (v,u)
+ *  *
+ *  * We perform a second dfs on the transposed graph ordered according to non-increasing finishing time of the graph
+ *  */
+
 
 public class StronglyConnectedComponents {
 

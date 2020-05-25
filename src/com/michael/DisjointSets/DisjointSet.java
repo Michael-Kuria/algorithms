@@ -9,9 +9,9 @@ import java.util.Map;
  * An implementation of Disjoint Set using trees in Java {Union with rank and path compression}
  * @param <T> the object
  */
-public class DisjointSet<T> {
+public class DisjointSet<T extends Comparable<T>> {
 
-    public static class Node<T>{
+    public static class Node<T extends Comparable<T>> implements Comparable<Node<T>>{
         public Node p;
         public T data;
         public int rank;
@@ -19,6 +19,11 @@ public class DisjointSet<T> {
         Node(T data){
             this.data = data;
             rank = 0;
+        }
+
+        @Override
+        public int compareTo(Node<T> o) {
+            return data.compareTo(o.data) ;
         }
 
     }

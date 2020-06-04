@@ -60,6 +60,7 @@ public class Dijkstra {
                 //relax the edge
                 if(e.v.d > u.d + e.w){
                     e.v.d = u.d + e.w;
+                    e.v.p = u;
                 }
             }
         }

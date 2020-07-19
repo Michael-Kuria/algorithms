@@ -303,7 +303,7 @@ public class RBTree<T extends Comparable> {
             x = y.right;
 
             // Note that y has no left child since it is the successor
-            if(y.equals(z.right)){
+            if(y.p.equals(z)){
                 x.p = y;
             }else{
                 transplant(y,y.right);

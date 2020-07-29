@@ -1,7 +1,7 @@
 package com.michael.sudokuSolver;
 
 /**
- * The algorithm presented will test each and number 1 - 9 on the empty slots until a fit is found
+ * The algorithm presented will test each number (1 - 9) on the empty slots until a fit is found
  */
 public class Sudoku {
 
@@ -36,30 +36,26 @@ public class Sudoku {
      * @return
      */
     public static boolean isValid(int[][] sudoku , int row, int col, int num){
-        for(int i = 0; i < sudoku.length ; i ++){
-            if(sudoku[row][i] == num)
-                return  false;
-        }
-        //check the column
+
+        //check the column and row
         for(int i = 0; i < sudoku.length; i ++){
-            if(sudoku[i][col] == num)
+            if(sudoku[i][col] == num || sudoku[row][i] == num)
                 return false;
         }
 
         //check the 3 x 3 grid
-        for(int i = 0; i < sudoku.length; i ++){
 
-            int gridX = row/3 * 3;
-            int gridY = col/3 * 3;
 
-            for(int m = gridX; m < gridX + 3; m ++){
-                for(int n = gridY; n < gridY + 3; n ++){
-                    if(sudoku[m][n] == num)
-                        return false;
-                }
+        int gridX = row/3 * 3;
+        int gridY = col/3 * 3;
+
+        for(int m = gridX; m < gridX + 3; m ++){
+            for(int n = gridY; n < gridY + 3; n ++){
+                if(sudoku[m][n] == num)
+                    return false;
             }
-
         }
+
 
         return true;
     }

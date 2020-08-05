@@ -26,7 +26,13 @@ public class Inversions {
         return count;
     }
 
-
+    /**
+     * implemented the merge-sort algorithm. In case of any swaps add the skipped range to cnt
+     *
+     * @param L
+     * @param H
+     * @param a
+     */
     public static void mergeSort(int L, int H, int [] a){
 
         if(L < H){

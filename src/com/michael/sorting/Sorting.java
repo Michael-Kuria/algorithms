@@ -324,13 +324,19 @@ public class Sorting {
     }
 
     public static void main(String [] args){
-        int[] array = {20,5,9,0,1,3,80,15,67,54,200,23,0,400,67,454,35662,45,687,45,0};
+        /*int[] array = {20,5,9,0,1,3,80,15,67,54,200,23,0,400,67,454,35662,45,687,45,0};
 
         print(array);
         //selectionSort(array);
         mergeSort(array,0,array.length-1);
         //quickSort(array,0,array.length-1);
-        print(array);
+        print(array);*/
+
+        int a [] = {5,3,6,7,1,2,4,0,8};
+
+        System.out.println(Arrays.toString(a));
+        quickSort(a,0 , a.length - 1);
+        System.out.println(Arrays.toString(a));
 
 
     }

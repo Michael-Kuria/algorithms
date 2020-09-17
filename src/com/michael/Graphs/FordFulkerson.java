@@ -1,13 +1,246 @@
 package com.michael.Graphs;
 
+
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Queue;
+
+/**
+ * Edmonds-Karp's implementation of the Ford-Fulkerson Algorithm. It rus in O(VE^2) time.
+ *
+ *
+ */
+public class FordFulkerson {
+
+
+    static int n, en, s, t; // number of vertices, edges, source and sink
+    static Vertex [] g; // graph
+    static Edge [] edges; // an array containing all the original edges of the graph
+    static boolean []  vst;
+
+
+    /**
+     * Edmonds-Karp Algorithm uses bfs to find the shortest path from the source to the sink
+     *
+     *
+     * @param u starting vertex
+     * @param gf the residual graph on which we will be performing the bfs
+     * @return A List containing the edges that makes up the Argumentative path and null if none exists
+     */
+    public static ArrayList<Integer> bfs(Vertex u, Vertex [] gf){
+
+        Queue<Vertex> q = new ArrayDeque<>();
+
+        vst[u.id] = true;
+        q.offer(u);
+
+
+        while(!q.isEmpty()){
+
+            Vertex v = q.poll();
+
+            for(Edge e: v.adj){
+
+                if(!vst[e.u.id]){
+                    q.offer(e.u);
+                    e.u.parent = e;
+                }
+                vst[e.u.id] = true;
+
+            }
+
+        }
+
+        ArrayList<Integer> ans = null;
+        if(vst[t]){
+            ans = new ArrayList<>();
+            Vertex r = gf[t];
+
+            while(r.parent != null){
+                ans.add(r.parent.id);
+                r = r.parent.v;
+            }
+        }
+
+
+        return ans;
+
+    }
+
+    /**
+     * Create the Residual graph and perform the bfs on it
+     *
+     * @return A List containing the edges that makes up the Argumentative path and null if none exists
+     */
+    public static ArrayList<Integer> findArgumentativePath(){
+        // form the residual Graph
+        Vertex [] gf = new Vertex[n];
+        vst = new boolean[n];
+
+        for(int i = 0; i < n; i ++){
+            gf[i] = new Vertex(i);
+        }
+
+        for(int i = 0; i < n; i ++){
+
+            for(Edge e : g[i].adj){
+
+                /**
+                 * if the flow (f) is 0 we can't have flow in the opposite direction of e
+                 * If the capacity is maxed out we can't push more flow in the direction of e
+                 */
+                if(e.f != 0 )
+                    gf[e.u.id].adj.add(new Edge(gf[i],gf[e.u.id],e.c, e.f,e.id + en));
+                if(e.f != e.c){
+                    gf[i].adj.add(new Edge(gf[e.u.id],gf[i],e.c, e.c - e.f, e.id));
+                }
+
+
+            }
+        }
+
+
+
+        return bfs(gf[s], gf);
+
+    }
+
+    /**
+     * Find the max flow by always finding an argumentative and updating flow along that path.
+     *
+     */
+    public static void findFlow(){
+
+        ArrayList<Integer> aPath = findArgumentativePath();
+        while( aPath != null){ // the loop can take at most O(VE) time
+
+            int cf = Integer.MAX_VALUE >> 1; // update the flow with the min cf
+            for(int k : aPath){
+
+                if(k >= en) k -= en;
+
+                cf =  Math.min(cf, (edges[k].c - edges[k].f));
+            }
+
+            for(int k :  aPath){
+
+                if(k < en){ // does the edge exist in the original graph
+                    edges[k].f +=  cf;
+                }else{
+                    edges[k - en].f -= cf;
+                }
+            }
+
+            aPath = findArgumentativePath();
+
+        }
+
+    }
+
+
+    public static void printGraph(Vertex [] vx){
+
+        int m = vx.length;
+
+        for(int i = 0; i < m; i ++){
+
+            System.out.print(i +" ");
+            for(Edge e: vx[i].adj){
+                System.out.print(e + " ");
+            }
+            System.out.println();
+        }
+    }
+
+
+    public static void main(String []  args){
+
+        n = 6;
+        en = 9;
+        s = 0;
+        t = n - 1;
+
+        edges = new Edge[en];
+        g = new Vertex[n];
+
+        for(int i = 0; i < n; i ++){
+            g[i] = new Vertex(i);
+        }
+
+        edges[0] = new Edge(g[1],g[0],16,0,0);
+        edges[1] = new Edge(g[2],g[0],13,0,1);
+        edges[2] = new Edge(g[3],g[1],12,0,2);
+        edges[3] = new Edge(g[1],g[2],4,0,3);
+        edges[4] = new Edge(g[4],g[2],14,0,4);
+        edges[5] = new Edge(g[2],g[3],9, 0,5);
+        edges[6] = new Edge(g[3],g[4],7,0,6);
+        edges[7] = new Edge(g[5],g[3],20,0,7);
+        edges[8] = new Edge(g[5],g[4],4,0,8);
+
+
+        g[0].adj.add(edges[0]); g[0].adj.add(edges[1]);
+        g[1].adj.add(edges[2]);
+        g[2].adj.add(edges[3]); g[2].adj.add(edges[4]);
+        g[3].adj.add(edges[5]); g[3].adj.add(edges[7]);
+        g[4].adj.add(edges[6]); g[4].adj.add(edges[8]);
+
+        findFlow();
+
+        int f = 0;
+
+        for(Edge e: g[0].adj){
+            f += e.f;
+        }
+
+        System.out.println("f = " + f);
+        printGraph(g);
+
+    }
+
+
+
+    public static class Vertex{
+        ArrayList<Edge> adj =  new ArrayList<>();
+        int  id;
+        Edge parent;
+
+        public Vertex(int id){
+            this.id =  id;
+        }
+    }
+
+    public static class Edge{
+        Vertex u, v;
+        int c, f, id; // capacity, flow and the id of the edge
+
+        public Edge(Vertex u,Vertex v, int c, int f, int id){
+            this.v = v;
+            this.u = u;
+            this.f = f;
+            this.c = c;
+            this.id = id;
+        }
+
+
+        @Override
+        public String toString(){
+            return "(" + u.id +" , c = " + c +", f = " + f +")";
+        }
+
+    }
+}
+
+/*
 import java.util.*;
 
+*/
 /**
  * An implementation of ford-fulkerson Algorithim for finding the Maximum flow of
  * flow network
  *
  * improve so that we update using c instead of f
- */
+ *//*
+
 public class FordFulkerson {
 
     public static Vertex[] residualGraph(Vertex [] g){
@@ -91,7 +324,7 @@ public class FordFulkerson {
 
                 for(Edge e: a.p.adj){
                     if(e.v == a && e.c > 0){
-                        cp = Math.min(cp, e.c); // residual capacity
+                        cp = Math.min(cp, e.c); //residual capacity
                     }
                 }
                 a = a.p;
@@ -230,3 +463,4 @@ public class FordFulkerson {
 
     }
 }
+*/

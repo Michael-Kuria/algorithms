@@ -5,7 +5,12 @@ package com.michael.NumberTheory;
  */
 public class BinaryExponentiation {
 
-
+    /**
+     * Recursive version
+     * @param x
+     * @param e
+     * @return
+     */
     public static long recursive(long x, long e){
 
         if(e == 0) return 1;

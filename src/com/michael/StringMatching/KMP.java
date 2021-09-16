@@ -6,7 +6,6 @@ package com.michael.StringMatching;
 public class KMP {
 
     public static int[] computePrefix(String p){
-
         int m = p.length();
         int aux[] = new int[m];
 

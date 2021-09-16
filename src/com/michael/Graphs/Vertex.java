@@ -7,6 +7,7 @@ public class Vertex {
 
     public int d; // depth of the vertex int bfs/ first time visited in dfs
     public int f;
+    public int index;
     public Color color;
     public List<Vertex> adj;
     public Vertex parent;
